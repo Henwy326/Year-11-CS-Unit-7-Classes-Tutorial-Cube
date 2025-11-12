@@ -4,18 +4,10 @@ public class Cube {
 
     // constructors
     public Cube(int side){
-        if (side < 1) {
-            throw new IllegalArgumentException("A cube’s side length must be equal to or greater than 1!");
-        }else{
-            this.side = side;
-        }
+        setSide(side);
     }
     public Cube(){
-        if (side < 1) {
-            throw new IllegalArgumentException("A cube’s side length must be equal to or greater than 1!");
-        }else{
-            this.side = 1;
-        }
+        this.side = 1;
     }
 
     // getter
@@ -25,6 +17,9 @@ public class Cube {
 
     // setter
     public void setSide(int side){
+        if (side < 1) {
+            throw new IllegalArgumentException("A cube’s side length must be equal to or greater than 1!");
+        }
         this.side = side;
     }
 
@@ -33,8 +28,20 @@ public class Cube {
         return side*side*side;
     }
 
+    public int calculateSurfaceArea(){
+        return 6 * side*side;
+    }
+
     // toString
     public String toString(){
-        return "Cube{" + side + "}";
+        return "Cube{Side=" + side + "}";
+    }
+
+    public static void main(String[] args) {
+        try {
+            Cube c = new Cube(-10);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
